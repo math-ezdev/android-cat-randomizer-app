@@ -88,4 +88,6 @@ dependencies {
     implementation(libs.squareup.retrofit.converter.gson)
     // Coil
     implementation(libs.coilKt.coil.compose)
+    // Splash screen
+    implementation(libs.androidx.core.splashscreen)
 }

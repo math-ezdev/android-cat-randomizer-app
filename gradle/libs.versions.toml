@@ -13,6 +13,7 @@ dagger = "2.51.1"
 retrofit = "2.11.0"
 coilKt = "2.6.0"
 kotlinx = "1.7.0"
+coreSplashscreen = "1.2.0-alpha01"
 
 
 [libraries]
@@ -43,8 +44,8 @@ squareup-retrofit = { group = "com.squareup.retrofit2", name = "retrofit", versi
 squareup-retrofit-converter-gson = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit" }
 # Coil
 coilKt-coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coilKt" }
-
-
+# Splash screen
+androidx-core-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "coreSplashscreen" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
