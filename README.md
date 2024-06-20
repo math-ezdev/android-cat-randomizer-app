@@ -1,7 +1,6 @@
 # Cat Randomizer App
-<video width="320" controls>
-  <source src="demo-cat-randomizer-app.webm" type="video/mp4">
-</video>
+[demo-cat-randomizer-app.webm](https://github.com/math-ezdev/android-cat-randomizer-app/assets/97508647/24a83860-7567-4705-85b3-616888246076)
+
 
 ## Getting Started
 - Config `BuildConfig.API_KEY` at `gradle.properties`: `API_KEY="your-api-key"`
