@@ -1,6 +1,6 @@
-package com.ezdev.cat_randomizer.domain.model
+package com.ezdev.cat_randomizer.core.domain.model
 
-import com.ezdev.cat_randomizer.data.local.CatEntity
+import com.ezdev.cat_randomizer.core.data.local.CatEntity
 
 data class Cat(
     val name: String,

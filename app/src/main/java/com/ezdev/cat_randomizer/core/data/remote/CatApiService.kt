@@ -1,4 +1,4 @@
-package com.ezdev.cat_randomizer.data.remote
+package com.ezdev.cat_randomizer.core.data.remote
 
 import com.ezdev.cat_randomizer.BuildConfig
 import retrofit2.http.GET

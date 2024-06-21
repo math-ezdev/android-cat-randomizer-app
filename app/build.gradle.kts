@@ -83,16 +83,17 @@ dependencies {
     implementation(libs.jetbrains.kotlinx.serialization.json)
     // Dagger-Hilt
     implementation(libs.google.dagger.hilt.android)
-//    kapt(libs.google.dagger.hilt.compiler)
     ksp(libs.google.dagger.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
     // Room
     implementation(libs.androidx.room.runtime)
-//    kapt(libs.androidx.room.compiler)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.room.paging)
     // Retrofit
     implementation(libs.squareup.retrofit)
     implementation(libs.squareup.retrofit.converter.gson)
+    // Datastore
+    implementation(libs.androidx.datastore.preferences)
     // Coil
     implementation(libs.coilKt.coil.compose)
     // Splash screen

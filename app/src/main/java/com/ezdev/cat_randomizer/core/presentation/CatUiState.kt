@@ -1,6 +1,6 @@
-package com.ezdev.cat_randomizer.presentation
+package com.ezdev.cat_randomizer.core.presentation
 
-import com.ezdev.cat_randomizer.domain.model.Cat
+import com.ezdev.cat_randomizer.core.domain.model.Cat
 
 data class CatUiState(
     val isLoading: Boolean = false,

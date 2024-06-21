@@ -1,9 +1,9 @@
-package com.ezdev.cat_randomizer.data.local
+package com.ezdev.cat_randomizer.core.data.local
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.ezdev.cat_randomizer.domain.model.Cat
+import com.ezdev.cat_randomizer.core.domain.model.Cat
 import java.util.Date
 
 @Entity(tableName = "cats")

@@ -1,6 +1,6 @@
-package com.ezdev.cat_randomizer.data.remote
+package com.ezdev.cat_randomizer.core.data.remote
 
-import com.ezdev.cat_randomizer.domain.model.Cat
+import com.ezdev.cat_randomizer.core.domain.model.Cat
 import com.google.gson.annotations.SerializedName
 
 data class CatDto(

@@ -1,14 +1,14 @@
-package com.ezdev.cat_randomizer.di
+package com.ezdev.cat_randomizer.core.di
 
 import android.content.Context
 import androidx.room.Room
-import com.ezdev.cat_randomizer.data.local.CatAppDatabase
-import com.ezdev.cat_randomizer.data.local.CatAppDatabase.Companion.DATABASE_NAME
-import com.ezdev.cat_randomizer.data.local.CatDao
-import com.ezdev.cat_randomizer.data.remote.CatApiService
-import com.ezdev.cat_randomizer.data.repository.CatRepositoryImpl
-import com.ezdev.cat_randomizer.domain.repository.CatRepository
-import com.ezdev.cat_randomizer.domain.usecase.GetCatsUseCase
+import com.ezdev.cat_randomizer.core.data.local.CatAppDatabase
+import com.ezdev.cat_randomizer.core.data.local.CatAppDatabase.Companion.DATABASE_NAME
+import com.ezdev.cat_randomizer.core.data.local.CatDao
+import com.ezdev.cat_randomizer.core.data.remote.CatApiService
+import com.ezdev.cat_randomizer.core.data.repository.CatRepositoryImpl
+import com.ezdev.cat_randomizer.core.domain.repository.CatRepository
+import com.ezdev.cat_randomizer.core.domain.usecase.GetCatsUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

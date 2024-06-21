@@ -1,4 +1,4 @@
-package com.ezdev.cat_randomizer.presentation
+package com.ezdev.cat_randomizer.core.presentation
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ezdev.cat_randomizer.common.Resource
-import com.ezdev.cat_randomizer.domain.usecase.GetCatsUseCase
+import com.ezdev.cat_randomizer.core.domain.usecase.GetCatsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn

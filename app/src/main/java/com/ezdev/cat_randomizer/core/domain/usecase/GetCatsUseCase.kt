@@ -1,8 +1,8 @@
-package com.ezdev.cat_randomizer.domain.usecase
+package com.ezdev.cat_randomizer.core.domain.usecase
 
 import com.ezdev.cat_randomizer.common.Resource
-import com.ezdev.cat_randomizer.domain.model.Cat
-import com.ezdev.cat_randomizer.domain.repository.CatRepository
+import com.ezdev.cat_randomizer.core.domain.model.Cat
+import com.ezdev.cat_randomizer.core.domain.repository.CatRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

@@ -1,4 +1,4 @@
-package com.ezdev.cat_randomizer.data.local
+package com.ezdev.cat_randomizer.core.data.local
 
 import androidx.room.Dao
 import androidx.room.Delete

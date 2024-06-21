@@ -1,7 +1,7 @@
-package com.ezdev.cat_randomizer.domain.repository
+package com.ezdev.cat_randomizer.core.domain.repository
 
 import com.ezdev.cat_randomizer.common.Resource
-import com.ezdev.cat_randomizer.domain.model.Cat
+import com.ezdev.cat_randomizer.core.domain.model.Cat
 import kotlinx.coroutines.flow.Flow
 
 interface CatRepository {

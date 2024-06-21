@@ -1,4 +1,4 @@
-package com.ezdev.cat_randomizer.data.local
+package com.ezdev.cat_randomizer.core.data.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase

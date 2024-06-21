@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.ezdev.cat_randomizer.presentation.CatScreen
+import com.ezdev.cat_randomizer.navigation.AppNavigation
 import com.ezdev.cat_randomizer.ui.theme.CatRandomizerTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,9 +22,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             CatRandomizerTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    CatScreen(
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    AppNavigation(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
