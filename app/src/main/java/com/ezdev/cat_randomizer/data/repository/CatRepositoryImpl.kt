@@ -1,6 +1,9 @@
 package com.ezdev.cat_randomizer.data.repository
 
+import android.util.Log
 import com.ezdev.cat_randomizer.common.Resource
+import com.ezdev.cat_randomizer.data.local.CatDao
+import com.ezdev.cat_randomizer.data.local.CatEntity
 import com.ezdev.cat_randomizer.data.remote.CatApiService
 import com.ezdev.cat_randomizer.domain.model.Cat
 import com.ezdev.cat_randomizer.domain.repository.CatRepository
@@ -10,20 +13,30 @@ import retrofit2.HttpException
 import java.io.IOException
 import javax.inject.Inject
 
+private const val TAG = "Cat data"
+
 class CatRepositoryImpl @Inject constructor(
+    private val catDao: CatDao,
     private val catApiService: CatApiService
 ) : CatRepository {
     override fun getCats(name: String): Flow<Resource<List<Cat>>> = flow {
         emit(Resource.Loading())
 
         try {
-            val cats: List<Cat> = catApiService.fetchCats(name).map { it.toCat() }
-            println("cats ${cats.size}")
-            emit(Resource.Success(cats))
+            val remoteCats: List<Cat> = catApiService.fetchCats(name).map { it.toCat() }
+            Log.d(TAG, "remoteCats: $remoteCats")
+
+            val catEntities: List<CatEntity> = remoteCats.map { it.toEntity() }
+            catDao.upsertCats(catEntities)
         } catch (e: HttpException) {
             emit(Resource.Error("Oops, something went wrong!"))
         } catch (e: IOException) {
             emit(Resource.Error("Couldn't reach server, check your internet connection!"))
         }
+
+
+        val localCats: List<Cat> = catDao.getCatsStream().map { it.toCat() }
+        Log.d(TAG, "localCats: $localCats")
+        emit(Resource.Success(localCats))
     }
 }

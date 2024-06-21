@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.ezdev.cat_randomizer.common.Resource
 import com.ezdev.cat_randomizer.domain.usecase.GetCatsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
@@ -23,7 +24,10 @@ class CatViewModel @Inject constructor(private val getCatsUseCase: GetCatsUseCas
     }
 
     private fun loadCats(name: String = ('a'..'z').random().toString()) {
+        _uiState.value = CatUiState(isLoading = true)
+
         viewModelScope.launch {
+            delay(1000L)
             getCatsUseCase(name).onEach { result ->
                 _uiState.value = when (result) {
                     is Resource.Error -> CatUiState(errorMessage = result.message ?: "Unknown error!")

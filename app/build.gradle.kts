@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.google.dagger.hilt.android)
+    alias(libs.plugins.google.devtools.ksp)
 }
 
 android {
@@ -80,9 +81,15 @@ dependencies {
     // Navigation
     implementation(libs.androidx.navigation.compose)
     implementation(libs.jetbrains.kotlinx.serialization.json)
-    // Dagger.Hilt
+    // Dagger-Hilt
     implementation(libs.google.dagger.hilt.android)
-    kapt(libs.google.dagger.hilt.compiler)
+//    kapt(libs.google.dagger.hilt.compiler)
+    ksp(libs.google.dagger.hilt.compiler)
+    // Room
+    implementation(libs.androidx.room.runtime)
+//    kapt(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.paging)
     // Retrofit
     implementation(libs.squareup.retrofit)
     implementation(libs.squareup.retrofit.converter.gson)

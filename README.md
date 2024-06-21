@@ -7,8 +7,7 @@
 
 ## TODO
 - [x] Clean Architecture
-- [ ] Implement Local data source
 - [ ] Paging 3 
 - [ ] Caching data, image
-- [ ] More feature: Download, Wallpaper...
+- [ ] More feature: DarkTheme,Download, Wallpaper...
 

@@ -12,7 +12,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.SubcomposeAsyncImage
 import com.ezdev.cat_randomizer.domain.model.Cat
@@ -36,14 +35,15 @@ private fun CatBody(uiState: CatUiState, onLoadCats: (Int) -> Unit, modifier: Mo
             }
 
             uiState.errorMessage.isNotBlank() -> {
-                ErrorText(
-                    text = uiState.errorMessage,
-                    modifier = Modifier.alpha(0.5f)
-                )
+                ErrorText(text = uiState.errorMessage)
             }
 
             else -> {
-                CatPager(uiState.cats, onLoadCats, modifier)
+                if (uiState.cats.isEmpty()) {
+                    ErrorText(text = "No data.")
+                } else {
+                    CatPager(uiState.cats, onLoadCats)
+                }
             }
         }
     }
@@ -53,12 +53,11 @@ private fun CatBody(uiState: CatUiState, onLoadCats: (Int) -> Unit, modifier: Mo
 private fun CatPager(
     cats: List<Cat>,
     onLoadCats: (Int) -> Unit,
-    modifier: Modifier
+    modifier: Modifier = Modifier
 ) {
     val pagerState = rememberPagerState(pageCount = {
         cats.size
     })
-
     LaunchedEffect(pagerState) {
         snapshotFlow { pagerState.currentPage }.collect { page ->
             onLoadCats(page)
@@ -69,8 +68,10 @@ private fun CatPager(
         state = pagerState,
         key = { it },
         modifier = modifier
+            .fillMaxSize()
     ) { page ->
         val cat = cats[page]
+
         SubcomposeAsyncImage(
             model = cat.imageLink,
             contentDescription = cat.name,
@@ -80,11 +81,13 @@ private fun CatPager(
                 }
             },
             error = {
-                ErrorText(text = "Error image!")
+                Box(contentAlignment = Alignment.Center) {
+                    ErrorText(text = "Cannot load image for ${cat.name}")
+                }
             },
-            modifier = Modifier
-                .fillMaxWidth()
+            modifier = Modifier.fillMaxWidth()
         )
     }
 }
+
 
