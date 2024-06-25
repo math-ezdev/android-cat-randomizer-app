@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ezdev.cat_randomizer.common.Resource
 import com.ezdev.cat_randomizer.core.domain.usecase.GetCatsUseCase
+import com.ezdev.cat_randomizer.downloader.Downloader
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
@@ -15,7 +16,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CatViewModel @Inject constructor(private val getCatsUseCase: GetCatsUseCase) : ViewModel() {
+class CatViewModel @Inject constructor(
+    private val getCatsUseCase: GetCatsUseCase,
+    private val downloader: Downloader
+) : ViewModel() {
     private val _uiState: MutableState<CatUiState> = mutableStateOf(CatUiState())
     val uiState: State<CatUiState> = _uiState
 
@@ -30,7 +34,10 @@ class CatViewModel @Inject constructor(private val getCatsUseCase: GetCatsUseCas
             delay(1000L)
             getCatsUseCase(name).onEach { result ->
                 _uiState.value = when (result) {
-                    is Resource.Error -> CatUiState(errorMessage = result.message ?: "Unknown error!")
+                    is Resource.Error -> CatUiState(
+                        errorMessage = result.message ?: "Unknown error!"
+                    )
+
                     is Resource.Loading -> CatUiState(isLoading = true)
                     is Resource.Success -> CatUiState(cats = result.data ?: emptyList())
                 }
@@ -42,5 +49,9 @@ class CatViewModel @Inject constructor(private val getCatsUseCase: GetCatsUseCas
         if (page == _uiState.value.cats.lastIndex) {
             loadCats()
         }
+    }
+
+    fun downloadCatImage(imageLink: String, name: String) {
+        downloader.downloadFile(imageLink,name)
     }
 }

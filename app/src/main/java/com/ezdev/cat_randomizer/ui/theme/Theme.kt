@@ -39,7 +39,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun CatRandomizerTheme(
+fun CatRandomizerAppTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
@@ -54,13 +54,23 @@ fun CatRandomizerTheme(
         themeMode.isDarkTheme()
     }
 
+    CatRandomizerTheme(isDarkTheme, dynamicColor, content)
+}
+
+@Composable
+fun CatRandomizerTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    // Dynamic color is available on Android 12+
+    dynamicColor: Boolean = true,
+    content: @Composable () -> Unit
+) {
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
-            if (isDarkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
 
-        isDarkTheme -> DarkColorScheme
+        darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
 

@@ -9,6 +9,8 @@ import com.ezdev.cat_randomizer.core.data.remote.CatApiService
 import com.ezdev.cat_randomizer.core.data.repository.CatRepositoryImpl
 import com.ezdev.cat_randomizer.core.domain.repository.CatRepository
 import com.ezdev.cat_randomizer.core.domain.usecase.GetCatsUseCase
+import com.ezdev.cat_randomizer.downloader.AndroidDownloader
+import com.ezdev.cat_randomizer.downloader.Downloader
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -25,10 +27,11 @@ abstract class CatModule {
     companion object {
         @Singleton
         @Provides
-        fun provideAppDatabase(@ApplicationContext applicationContext: Context): CatAppDatabase = Room.databaseBuilder(
-            applicationContext,
-            CatAppDatabase::class.java, DATABASE_NAME
-        ).build()
+        fun provideAppDatabase(@ApplicationContext applicationContext: Context): CatAppDatabase =
+            Room.databaseBuilder(
+                applicationContext,
+                CatAppDatabase::class.java, DATABASE_NAME
+            ).build()
 
         @Singleton
         @Provides
@@ -60,4 +63,9 @@ abstract class CatModule {
     ): CatRepository
 
 
+    @Singleton
+    @Binds
+    abstract fun bindDownloader(
+        androidDownloader: AndroidDownloader
+    ): Downloader
 }
