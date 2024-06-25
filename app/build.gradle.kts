@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("kotlin-kapt")
     alias(libs.plugins.android.application)
@@ -23,13 +25,18 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-        buildConfigField("String","API_KEY","${project.properties["API_KEY"]}")
+
+        // Get API_KEY from local.properties
+        val localProperties = Properties()
+        localProperties.load(project.rootProject.file("local.properties").inputStream())
+//        project.rootProject.file("local.properties").inputStream().use { localProperties.load(it) }
+        buildConfigField("String", "API_KEY", localProperties.getProperty("API_KEY"))
     }
 
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -45,7 +52,7 @@ android {
     }
     buildFeatures {
         compose = true
-//        buildConfig = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
