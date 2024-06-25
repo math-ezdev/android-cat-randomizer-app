@@ -205,7 +205,7 @@ private fun MainActions(
 
 @Composable
 private fun MoreActions(onNavigateToSettings: () -> Unit, modifier: Modifier = Modifier) {
-    Column(modifier = modifier) {
+    Column(verticalArrangement = Arrangement.spacedBy(16.dp), modifier = modifier) {
         ActionButton(
             iconRes = R.drawable.baseline_wallpaper_24,
             contentDescription = "Set as Wallpaper",
